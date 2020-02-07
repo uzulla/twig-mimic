@@ -1,0 +1,5 @@
+/src/*
+/template/*
+/public/*
+/composer.phar
+/.phpunit.result.cache

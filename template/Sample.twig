@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sample twig</title>
+</head>
+<body>
+
+<h1>hello {{ name }}</h1>
+
+<h2>age (int will be convert str)</h2>
+<p>{{ age }}</p>
+
+<h2>un exists value will be black(not error)</h2>
+<p>{{ unexists_value }}</p>
+
+<h2>sites(for each)</h2>
+<ul>
+    {% for webSite in webSites %}
+        <li><a href="{{ webSite }}">{{ webSite }}</a></li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

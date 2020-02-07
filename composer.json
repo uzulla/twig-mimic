@@ -1,0 +1,19 @@
+{
+  "require": {
+    "twig/twig": "^3.0",
+    "phpunit/phpunit": "^8.5"
+  },
+  "config": {
+    "platform": {
+      "php": "7.4"
+    },
+    "sort-packages": true
+  },
+  "autoload": {
+    "psr-4": {
+      "Project\\": "src/",
+      "Uzulla\\": "lib/",
+      "Uzulla\\TwigMimic\\": "tests/"
+    }
+  }
+}
