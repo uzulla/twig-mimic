@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Uzulla;
 
+use DirectoryIterator;
+use InvalidArgumentException;
 use Throwable;
 use Twig\Environment;
 use Twig\Error\LoaderError;
@@ -22,8 +24,22 @@ class TwigMimic
         error_log("REQUEST_URI => {$_SERVER['REQUEST_URI']}");
 
         if ($_SERVER['REQUEST_URI'] == '/') {
-            /** @noinspection HtmlUnknownTarget */
-            echo "Need Something Path. <a href='/Sample'>Sample</a>";
+            echo "<html lang='en'><body><h1>List of paths</h1>";
+            echo "<ul>";
+
+            $vs_dir = new DirectoryIterator(__DIR__."/../src/ViewState/");
+            if(!$vs_dir->isDir()){
+                throw new InvalidArgumentException("not found ViewState dir");
+            }
+
+            foreach($vs_dir as $file){
+                if (!$file->isFile()) continue;
+                if( 'php' !== $file->getExtension()) continue;
+                $file_name = htmlspecialchars($file->getBasename('.php'), ENT_QUOTES, 'UTF-8');
+                echo "<li><a href='/{$file_name}'>{$file_name}</a></li>";
+            }
+
+            echo "</ul>";
             exit;
         }
 
